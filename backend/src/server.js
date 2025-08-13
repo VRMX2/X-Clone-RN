@@ -1,8 +1,9 @@
 import express from 'express';
 import "dotenv/config";
 import cors from "cors";
+import {ENV} from "./config/env";
 
-const port = process.env.PORT || 7500;
+
 const app = express();
 
 
@@ -16,6 +17,6 @@ app.get("/api/health", (req, res) => {
 
 
 
-app.listen(port, () => {
-	console.log(`🌐 Server running on port ${port}`);
+app.listen(ENV.PORT, () => {
+	console.log(`🌐 Server running on port ${ENV.PORT}`);
 });
