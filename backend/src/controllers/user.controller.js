@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/user.model.js";
+import Notification from "../models/notification.model.js";
 import {clerkClient, getAuth} from "@clerk/express";
 
 
@@ -56,12 +57,19 @@ export const syncUser = asyncHandler(async(req, res) => {
 
 
 
+
+
 export const getCurrentUser = asyncHandler(async(req, res) => {
 	const {userId} = getAuth(req);
 	const user = await User.findOne({clerkId: userId});
 	if(!user) return res.status(404).json({error: "User not found"});
 	res.status(200).json({user});
 });
+
+
+
+
+
 
 
 export const followUser = asyncHandler(async(req, res) => {
